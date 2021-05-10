@@ -1,14 +1,24 @@
 package com.amz.qa.util;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
 import com.amz.qa.base.TestBase;
+import com.amz.qa.report.ExtentReporterNG;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 
-public class WebEventListener extends TestBase implements WebDriverEventListener  {
+public class WebEventListener extends ExtentReporterNG implements WebDriverEventListener,ITestListener  {
+
 
 	public void beforeAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
@@ -141,6 +151,63 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 	}
 
 	public void afterGetText(WebElement element, WebDriver driver, String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	public void onTestStart(ITestResult result) {
+		// TODO Auto-generated method stub
+		test=extend.createTest(result.getName());
+	}
+
+	public void onTestSuccess(ITestResult result) {
+		// TODO Auto-generated method stub
+		   test.log(Status.PASS, "Pass Test case is: "+result.getName());
+
+			}
+
+	public void onTestFailure(ITestResult result) {
+		// TODO Auto-generated method stub
+		if(result.getStatus()==ITestResult.FAILURE)
+		{
+			test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+"Test Case got Failed", ExtentColor.RED));
+			test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable()+"Test Case got Failed", ExtentColor.RED));
+			String pathString = null;
+			try {
+				 pathString=TestUtil.takeScreenshotAtEndOfTest();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				test.addScreenCaptureFromPath(pathString);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStart(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
 		
 	}

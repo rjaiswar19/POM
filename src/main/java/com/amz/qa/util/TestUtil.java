@@ -31,11 +31,16 @@ public class TestUtil extends TestBase {
     	
     }
     
-    public static void takeScreenshotAtEndOfTest() throws IOException
+    public static String takeScreenshotAtEndOfTest() throws IOException
     {
           File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
           String currentdirectory=System.getProperty("user.dir");
-          FileUtils.copyFile(srcfile, new File(currentdirectory+"/screenshot"+System.currentTimeMillis()+".png"));
+          String screenshotdestination=System.getProperty("User.dir")+"\\Screenshot\\amazonTestCaseReport"+System.currentTimeMillis()+".png";
+          File filedestination=new File(screenshotdestination);
+          FileUtils.copyFile(srcfile,filedestination);
+          
+          
+          return screenshotdestination ;
     }
     
     public static Object[][] getTestData(String sheetName)
@@ -67,7 +72,7 @@ public class TestUtil extends TestBase {
     	Object[][] data=new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
     	for(int i=0;i<sheet.getLastRowNum();i++)
     	{
-    		for(int j=0;j<sheet.getRow(i).getLastCellNum();i++)
+    		for(int j=0;j<sheet.getRow(i).getLastCellNum();j++)
     		{
     			data[i][j]=sheet.getRow(i+1).getCell(j).toString();
     		}

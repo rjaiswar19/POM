@@ -21,6 +21,7 @@ public class LoginPageTest extends TestBase {
 	@BeforeMethod
 	public void setUP()
 	{
+
 		initialization();
 		loginpage=new LoginPage();
 		
@@ -30,16 +31,16 @@ public class LoginPageTest extends TestBase {
 	
 	
 	
-	@Test(priority=3)
+	@Test
 	public void loginTest(){
+
 		homepage = loginpage.login(pro.getProperty("username"), pro.getProperty("password"));
 	}
 	
 	
 	
-//	@AfterMethod
-//	public void tearDown(){
-//		driver.quit();
-//
-//	}
+	@AfterMethod
+public void tearDown(){
+	driver.quit();
+	}
 }

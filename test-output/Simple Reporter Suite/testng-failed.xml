@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Simple Reporter Suite]">
+  <listeners>
+    <listener class-name="com.amz.qa.util.WebEventListener"/>
+  </listeners>
+  <test thread-count="5" name="amazon testing report(failed)">
+    <classes>
+      <class name="com.amz.qa.testcases.LoginPageTest">
+        <methods>
+          <include name="loginTest"/>
+          <include name="BeforeSuite"/>
+          <include name="initialization"/>
+          <include name="AfterSuite"/>
+          <include name="setUP"/>
+        </methods>
+      </class> <!-- com.amz.qa.testcases.LoginPageTest -->
+    </classes>
+  </test> <!-- amazon testing report(failed) -->
+</suite> <!-- Failed suite [Simple Reporter Suite] -->

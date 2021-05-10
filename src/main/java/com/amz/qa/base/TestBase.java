@@ -12,9 +12,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 
 import com.amz.qa.util.WebEventListener;
-
+import com.amz.qa.report.ExtentReporterNG;
 import com.amz.qa.util.TestUtil;
 
 
@@ -26,7 +32,21 @@ public class TestBase{
 	public static Properties pro;
 	public  static EventFiringWebDriver e_driver;
 	public static WebEventListener eventListener;
+	public static ExtentReporterNG extendreport;
 	
+
+
+	public void BeforeSuite()
+	{
+		ExtentReporterNG.setExtend();
+	}
+	
+
+
+	
+	
+
+
 	public TestBase()
 	{
 		try{
@@ -44,6 +64,7 @@ public class TestBase{
 		}
 	}
 	
+	@BeforeMethod
 	public static void initialization()
 	{
 		String browserName=pro.getProperty("Browser");
@@ -64,6 +85,9 @@ public class TestBase{
 		e_driver.register(eventListener);
 		driver=e_driver;
 		
+		
+		
+		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
@@ -74,6 +98,10 @@ public class TestBase{
 		
 		
 		
+	}
+	public void AfterSuite()
+	{
+		ExtentReporterNG.endReport();
 	}
 	
 

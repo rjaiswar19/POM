@@ -13,16 +13,48 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
-import com.relevantcodes.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+/*import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import com.relevantcodes.extentreports.LogStatus;*/
 
-public class ExtentReporterNG implements IReporter {
-	private  ExtentReports extend;
+public class ExtentReporterNG{
+	public static  ExtentReports extend;
+	public static  ExtentHtmlReporter htmlReporter;
+	public static  ExtentTest test;
+	
 
-	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
+	public static void setExtend()
+	{
+		htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+"/target/"+"extend"+System.currentTimeMillis()+"report.HTML");
+		htmlReporter.config().setDocumentTitle("Extent report by rama");
+		htmlReporter.config().setReportName("amazon login page report");
+		htmlReporter.config().setTheme(Theme.DARK);
+		
+		extend=new ExtentReports();
+		extend.attachReporter(htmlReporter);
+		
+		extend.setSystemInfo("HostName", "MyName");
+		extend.setSystemInfo("ProjectName", "AmazonProject");
+		extend.setSystemInfo("Tester", "Rama");
+		extend.setSystemInfo("OS","Window");
+		extend.setSystemInfo("Browser Name", "Chrome");
+		
+		
+	}
+	
+	
+	
+	public static void endReport()
+	{
+		extend.flush();
+	}
+	/*public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
 
-		extend=new ExtentReports(outputDirectory+File.separator+"Extent.html",false);
+		extend=new ExtentReports(outputDirectory+File.separator+"Extent.html",true);
 
 		for(ISuite suite:suites)
 		{
@@ -40,8 +72,9 @@ public class ExtentReporterNG implements IReporter {
 	extend.flush();
 	extend.close();
 	}
+*/
 
-	private void buildTestNodes(IResultMap tests, LogStatus status) {
+	/*private void buildTestNodes(IResultMap tests, LogStatus status) {
 		// TODO Auto-generated method stub
 		ExtentTest test;
 		if(tests.size()>0)
@@ -68,12 +101,16 @@ public class ExtentReporterNG implements IReporter {
 		}
 		
 	}
-
+*/
 	private Date getTime(long Millis) {
 		// TODO Auto-generated method stub
 		Calendar calender=Calendar.getInstance();
 		calender.setTimeInMillis(Millis);
 		return calender.getTime();
 	}
+
+
+
+	
 
 }
