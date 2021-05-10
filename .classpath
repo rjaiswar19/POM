@@ -22,5 +22,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/rjaiswar/Downloads/eclipse-java-neon-3-win32-x86_64/eclipse/plugins/org.testng_6.14.2.r201802161450.jar" sourcepath="C:/Users/rjaiswar/Downloads/eclipse-java-neon-3-win32-x86_64/eclipse/plugins/org.testng.source_6.14.2.r201802161450.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
