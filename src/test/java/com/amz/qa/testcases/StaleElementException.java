@@ -26,6 +26,8 @@ public class StaleElementException {
 			
 			System.out.println("check automatic build trigger 1");
 		System.out.println("check automatic build trigger 2");
+				System.out.println("check automatic build trigger 3");
+
 		
 		
 	}
