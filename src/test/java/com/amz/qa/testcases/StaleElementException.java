@@ -22,6 +22,7 @@ public class StaleElementException {
 		
 		Password.sendKeys("Harman@2021");
 		
+		System.out.println("check automatic build trigger")
 		
 		
 	}
