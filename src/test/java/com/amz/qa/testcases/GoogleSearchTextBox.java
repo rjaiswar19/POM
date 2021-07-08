@@ -47,7 +47,7 @@ public class GoogleSearchTextBox {
 			}
 		}
 		System.out.println("Execution is done");
-		System.out.println("this is for automation build")
+		System.out.println("this is for automation build");
 	}
 
 }
